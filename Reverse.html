@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reverse</title>
+</head>
+<body>
+    <h1>Enter a String it will convert into Reverse of a String</h1>
+    Enter a line: <input type="text" id="li">
+    <button onclick="reverseInput()">Reverse</button>
+    <p id="output"></p>
+    <script>
+        function reverseWords(sentence) {
+            const words = [];
+            let currentWord = '';
+            let reversedSentence = '';
+
+            for (let i = 0; i < sentence.length; i++) {
+                const char = sentence[i];
+
+                if (char === ' ' || i === sentence.length - 1) {
+                    if (i === sentence.length - 1) {
+                        currentWord += char;
+                    }
+                    words.push(currentWord);
+                    currentWord = '';
+                } else {
+                    currentWord += char;
+                }
+            }
+
+            for (let i = 0; i < words.length; i++) {
+                for (let j = words[i].length - 1; j >= 0; j--) {
+                    reversedSentence += words[i][j];
+                }
+
+                if (i < words.length - 1) {
+                    reversedSentence += ' ';
+                }
+            }
+
+            return reversedSentence;
+        }
+
+        function reverseInput() {
+            const inputElement = document.getElementById('li');
+            const inputValue = inputElement.value;
+            const reversedSentence = reverseWords(inputValue);
+
+            document.getElementById('output').textContent = reversedSentence;
+        }
+    </script>
+</body>
+</html>

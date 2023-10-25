@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Form</title>
+    <style>
+       
+       .container {
+            text-align: center;
+            padding: 20px;
+            background-color: steelblue;
+        }
+        
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+        }
+
+        input[type="radio"] {
+            display: inline;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Survey Form</h1>
+        <form id="sf">
+            <label for="fn">First Name:</label>
+            <input type="text" id="fn" required>
+
+            <label for="ln">Last Name:</label>
+            <input type="text" id="ln" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required>
+
+            <label for="con">Country:</label>
+            <select id="con" required>
+                <option value="Korean">Korean</option>
+                <option value="Japan">Japan</option>
+                <option value="INDIA">INDIA</option>
+            </select>
+
+            <label>Gender:</label>
+            <input type="radio" id="m" name="gender" value="Male"> Male
+            <input type="radio" id="f" name="gender" value="Female"> Female
+
+            <label for="pro">Profession:</label>
+            <input type="text" id="pro" required>
+
+            <label for="em">Email:</label>
+            <input type="email" id="em" required>
+
+            <label for="mob">Mobile:</label>
+            <input type="tel" id="mob" required>
+
+            <input type="button" value="Submit" id="sub" onclick="submitForm()">
+            <button type="reset" id="res">Reset</button>
+        </form>
+    </div>
+    <script>
+        
+        function submitForm() {
+    const form = document.getElementById("sf");  // Corrected the form reference
+
+    const FirstName = document.getElementById("fn").value;
+    const LastName = document.getElementById("ln").value;
+    const DateofBirth = document.getElementById("dob").value;
+    const Country = document.getElementById("con").value;
+    const genderRadioButtons = document.getElementsByName("gender");
+    let gender = '';
+
+    for (const radioButton of genderRadioButtons) {
+        if (radioButton.checked) {
+            gender = radioButton.value;
+            break;
+        }
+    }
+
+    const profession = document.getElementById("pro").value;
+    const email = document.getElementById("em").value;
+    const mobile = document.getElementById("mob").value;
+
+    if (!FirstName || !LastName || !DateofBirth || !Country || !gender || !profession || !email || !mobile) {  // Corrected gender validation
+        alert("Please fill out all required fields.");
+        return;
+    }
+
+    const popupMessage = `
+        First Name: ${FirstName}
+        Last Name: ${LastName}
+        Date of Birth: ${DateofBirth}
+        Country: ${Country}
+        Gender: ${gender}
+        Profession: ${profession}
+        Email: ${email}
+        Mobile Number: ${mobile}
+    `;
+
+    alert(popupMessage);
+
+    form.reset();
+}
+    </script>
+</body>
+</html>

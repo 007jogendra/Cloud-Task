@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort Array in Descending Order</title>
+</head>
+<body>
+    <h1>Sort Array in Descending Order</h1>
+    
+    <div>
+        <label for="arrayInput">Enter numbers (comma-separated):</label>
+        <input type="text" id="arrayInput">
+        <button onclick="sortArray()">Sort</button>
+    </div>
+    
+    <div id="result">
+       
+        
+    </div>
+
+    <script>
+        function parseNumbers(inputText) {
+            const numberStrings = inputText.split(",");
+            const numbers = [];
+            
+            for (let i = 0; i < numberStrings.length; i++) {
+                const number = parseFloat(numberStrings[i]);
+                
+                if (!isNaN(number)) {
+                    numbers.push(number);
+                }
+            }
+            
+            return numbers;
+        }
+
+        function sortArray() {
+            const inputElement = document.getElementById("arrayInput");
+            const resultElement = document.getElementById("result");
+
+            const inputText = inputElement.value;
+            const numbers = parseNumbers(inputText);
+
+            if (numbers.length > 0) {
+                for (let i = 0; i < numbers.length - 1; i++) {
+                    for (let j = i + 1; j < numbers.length; j++) {
+                        if (numbers[i] < numbers[j]) {
+                            const temp = numbers[i];
+                            numbers[i] = numbers[j];
+                            numbers[j] = temp;
+                        }
+                    }
+                }
+
+                resultElement.textContent = "Sorted in descending order: " + numbers;
+            } else {
+                resultElement.textContent = "Please enter some numbers.";
+            }
+        }
+    </script>
+</body>
+</html>
